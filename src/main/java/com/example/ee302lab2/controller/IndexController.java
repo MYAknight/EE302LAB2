@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Map;
 
 
 @Controller
@@ -25,6 +26,11 @@ public class IndexController {
 //            modelAndView.addObject("key", 12345);
             //System.out.println("test");
             return modelAndView;
+        }
+        @RequestMapping("/success")
+        public String success(Map<String, Object> map){
+            map.put("hello", "你好");
+            return "register01";
         }
 
     }

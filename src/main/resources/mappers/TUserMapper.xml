@@ -11,6 +11,12 @@
         where PK_UID = #{PK_UID}
     </select>
 
+    <select id="getUserByNumber" resultType="java.lang.String">
+        select Uname=#{Uname}
+        from T_user
+        where Uphone = #{Uphone}
+    </select>
+
     <select id="getAllUsers" resultType="com.example.ee302lab2.entity.TUser">
         select *
         from T_user

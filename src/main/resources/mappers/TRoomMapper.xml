@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ee302lab2.mapper.TRoomMapper">
+
+    <insert id="addUser2Room">
+        insert into T_room (state, Number, uid,Uname, d1, d2, d3, d4, d5, d6)
+            value (#{state},#{Number},#{uid},#{Uname},#{d1},#{d2},#{d3},#{d4},#{d5},#{d6})
+    </insert>
+    <select id="getOneRoomInfByUid" resultType="com.example.ee302lab2.entity.room">
+        select PK_RID id
+             , state  ustate
+             , Number Number
+             , Uname  Uname
+             , uid    uid
+             , d1     d1
+             , d2     d2
+             , d3     d3
+             , d4     d4
+             , d5     d5
+             , d6     d6
+        from T_room
+        where uid = #{uid}
+    </select>
+    <select id="getOneRoomInfByRnumber" resultType="com.example.ee302lab2.entity.room">
+        select PK_RID id
+             , state  ustate
+             , Number Number
+             , Uname  Uname
+             , uid    uid
+             , d1     d1
+             , d2     d2
+             , d3     d3
+             , d4     d4
+             , d5     d5
+             , d6     d6
+        from T_room
+        where Number = #{Number}
+    </select>
+    <update id="changeOneUserRoom">
+        update T_room
+        set Number=#{Number},
+            d1=0,
+            d2=0,
+            d3=0,
+            d4=0,
+            d5=0,
+            d2=0
+        where uid = #{uid}
+    </update>
+    <update id="changeOneUserData">
+        update T_room
+        set d1=#{d1},
+            d2=#{d2},
+            d3=#{d3},
+            d4=#{d4},
+            d5=#{d5},
+            d6=#{d6}
+        where uid = #{uid}
+    </update>
+</mapper>

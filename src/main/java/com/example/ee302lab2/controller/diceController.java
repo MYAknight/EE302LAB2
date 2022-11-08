@@ -21,6 +21,14 @@ public class diceController {
         return id;
     }
 
+    @ApiOperation("改变用户数据")
+    @PostMapping("/changeUserData")
+    public int changeUserData(
+    ) {
+        room r1 = new room();
+        int id = r1.getId();
+        return id;
+    }
     @ApiOperation("验证结果")
     @PostMapping("/checkResult")
     public String checkResult(@ApiParam("名称") @RequestParam("Uname") String temp
@@ -32,8 +40,8 @@ public class diceController {
         int i1 = Integer.parseInt(temp);
         int[] dice_array = new int[6];
         for (int i = 0; i < 6; i++) {
-            dice_array[i] = i1%10;
-            i1/=10;
+            dice_array[i] = i1 % 10;
+            i1 /= 10;
         }
 
         String result;
@@ -64,20 +72,20 @@ public class diceController {
             }
         }
         //状元
-        if ((two_flag == 2 && four_flag == 4) || (four_flag == 6) || (one_flag == 6) || (four_flag == 5) || (two_flag == 5) || (four_flag == 4)) {
+        if ((one_flag == 2 && four_flag == 4) || (one_flag >= 5) || (two_flag >= 5) || (three_flag >= 5) || (four_flag >= 5) || (five_flag >= 5) || (six_flag >= 5) || (four_flag == 4)) {
             result = "状元";
         }
         //对堂
         else if (one_flag == 1 && two_flag == 1 && three_flag == 1 && four_flag == 1 && five_flag == 1 && six_flag == 1) {
             result = "对堂";
         }
-        //四进
-        else if (two_flag == 4) {
-            result = "四进";
-        }
         //三红
         else if (four_flag == 3) {
             result = "三红";
+        }
+        //四进
+        else if (two_flag == 4 || (one_flag == 4) || (three_flag == 4) || (five_flag == 4) || (six_flag == 4)) {
+            result = "四进";
         }
         //二举
         else if (four_flag == 2) {

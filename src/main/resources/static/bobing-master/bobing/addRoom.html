@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="js/jquery-1.11.0.js" charset="utf-8"></script>
+<body>
+<iframe width=0 height=0 frameborder=0 id="myiframe02" name="myiframe02"></iframe>
+<div class="goRoom">
+    <form id="MyFrom2" action="/room/join" method="post" target="myiframe02">
+        <input type="text" name="Rnumber" id="Rnumber" placeholder="房间邀请码"/>
+        <input type="submit" id="Submit" value="进入房间" onclick="kaifang()">
+    </form>
+</div>
+<script>
+    function kaifang() {
+        let form = document.getElementById("MyFrom2");
+        let formData = new FormData(form);
+        let Rnumber = formData.get('Rnumber');
+        let uid = window.sessionStorage.getItem('Unumber');
+        console.log(uid);
+        $.ajax({
+            method: 'POST',
+            url:'http://47.107.225.197:8081/room/join',
+            // url: 'http://localhost:8081/room/join',
+            data: {Rnumber: Rnumber,uid: uid}
+        }).done(function (msg) {
+            if ("okk" == msg) {
+                window.sessionStorage.setItem('Rnumber', Rnumber);
+                location.replace("multi.html");
+            }
+        });
+    }
+</script>
+</body>
+</html>

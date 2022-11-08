@@ -6,9 +6,8 @@
     <title>用户登录</title>
     <link rel="stylesheet" type="text/css" href="signUpStatic/css/style.css"/>
 </head>
-
+<script type="text/javascript" src="script/jquery-1.11.0.js" charset="utf-8"></script>
 <body>
-
 <div class="item">
     <div class="logo">
         <img src="signUpStatic/images/product-hm.png" alt="网站统计">
@@ -19,23 +18,21 @@
         <a href="javascript:;" class="tiyan"><span>立即登录</span><em></em></a>
     </div>
 </div>
-<!--按钮结束-->
-
-<!--弹窗开始-->
+<iframe width=0 height=0 frameborder=0 id="myiframe" name="myiframe"></iframe>
 <div class="tan">
     <div class="box">
         <div class="form">
             <span class="close">✖</span>
             <h3>欢迎来到613博饼天堂</h3>
-            <form action="/user/login" onSubmit="return checkall();" method="post">
+            <form id="MyFrom1" action="/user/login" onSubmit="return asdaa()" method="post" target="myiframe">
                 <input type="text" name="Unumber" id="Unumber" placeholder="手机号"/>
-                <input type="password" name="password" id="passw" placeholder="请输入密码"/>
+                <input type="password" name="Upassword" id="Upassword" placeholder="请输入密码"/>
                 <div class="valicode">
                     <input type="text" name="valicode" id="valicode" placeholder="请输入验证码"/>
                     <img src="signUpStatic/images/valicode.jpg"/>
                 </div>
                 <div class="error"></div>
-                <input type="submit" id="Submit" value="登录">
+                <input type="submit" id="Submit" value="登录" onclick="gong()" >
             </form>
             <p class="reg">
                 <a href="register01.html">立即注册</a>
@@ -44,14 +41,45 @@
         </div>
     </div>
 </div>
-<!--弹窗结束-->
-<script src="signUpStatic/js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    var phone = document.getElementById('phone');
-    var passw = document.getElementById('passw');
+    function gong() {
+        let form = document.getElementById("MyFrom1");
+        let formData = new FormData(form);
+        let Unumber = formData.get('Unumber');
+        let Upassword = formData.get('Upassword');
+        $.ajax({
+            method: 'POST',
+            url:'http://47.107.225.197:8081/user/login',
+            // url: 'http://localhost:8081/user/login',
+            data: {Unumber: Unumber, Upassword: Upassword},
+        }).done(function (msg) {
+            if ("go" == msg) {
+                window.sessionStorage.setItem('Unumber', Unumber);
+                location.replace("bobing-master/bobing/index.html");
+            }
+        });
+        /*var con;
+        con=confirm("确定要删除该用户吗?");
+        if(con==true){
+            $.ajax({
+                url: 'delete.php',
+                type:'POST',
+                data:{id:id},
+                success:function(result){
+                    console.log(result);
+                    location.reload()
+                }
+            });
+        }*/
+    }
+</script>
+<!--弹窗结束-->
+<script type="text/javascript">
+    var phone = document.getElementById('Unumber');
+    var passw = document.getElementById('Upassword');
     var valicode = document.getElementById('valicode');
 
-    function checkall() {
+    function asdaa() {
 
         if (phone.value == "") {
             alert("请输入手机号");
@@ -133,10 +161,10 @@
 
             if (name == "") {
                 errtxt = "用户名不能为空";
-                thisid = "name";
+                thisid = "Unumber";
             } else if (passw == "") {
                 errtxt = "请输入密码";
-                thisid = "passw";
+                thisid = "Upassword";
             } else if (valicode == "") {
                 errtxt = "请输入正确的验证码";
                 thisid = "valicode";
@@ -154,6 +182,7 @@
         }
     })
 </script>
+
 
 </body>
 
