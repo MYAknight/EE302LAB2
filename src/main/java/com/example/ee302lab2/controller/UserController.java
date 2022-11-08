@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+    //自动填充TUserMapper，便于后续使用接口的方法
     @Autowired
     TUserMapper tUserMapper;
 
@@ -33,41 +34,7 @@ public class UserController {
             }
         }
     }
- /*   @RequestMapping("/login")
-    public String selectUser(Map<String, Object> map, @RequestParam("Unumber") String Unumber,
-                             @RequestParam("password") String password
 
-    ) {
-        TUser userInf = tUserMapper.getUserInf(Unumber);
-        if (null == userInf) {
-            return "redirect:/register01.html";
-        } else {
-            if (password.equals(userInf.getUpassword())) {
-                return "redirect:/bobing-master/bobing/index.html";
-            } else {
-                return "redirect:/register01.html";
-            }
-        }
-    }*/
-   /* @RequestMapping("/login")
-    public ModelAndView selectUser(@RequestParam("Unumber") String Unumber,
-                                   @RequestParam("password") String password
-    ) {
-        TUser userInf = tUserMapper.getUserInf(Unumber);
-        ModelAndView modelAndView = new ModelAndView();
-        if (null == userInf) {
-            modelAndView.setViewName("register01.html");
-        } else {
-            if (password.equals(userInf.getUpassword())) {
-                modelAndView.setViewName("bobing-master/bobing/index.html");
-                modelAndView.addObject("key", 32123);
-                System.out.println("code");
-            } else {
-                modelAndView.setViewName("register01.html");
-            }
-        }
-        return modelAndView;
-    }*/
 
     @ApiOperation(value = "用户注册，学工号在数据库是唯一元素，成功message返回“用户注册成功”，否则返回“该学工号已注册“")
     @PostMapping("/registerUserWithPhone")
