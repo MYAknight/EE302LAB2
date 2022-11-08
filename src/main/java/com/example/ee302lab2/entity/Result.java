@@ -27,8 +27,7 @@ public class Result {
     private Map<String, Object> data = new HashMap<>();
 
     /**
-     * 构造方法私有化,里面的方法都是静态方法
-     * 达到保护属性的作用
+     * 构造方法私有化,里面的方法都是静态方法达到保护属性的作用
      */
     public Result() {
 
