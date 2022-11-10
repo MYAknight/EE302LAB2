@@ -23,15 +23,7 @@ public class IndexController {
         public ModelAndView sayHello() {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("register01.html");
-//            modelAndView.addObject("key", 12345);
-            //System.out.println("test");
             return modelAndView;
         }
-        @RequestMapping("/success")
-        public String success(Map<String, Object> map){
-            map.put("hello", "你好");
-            return "register01";
-        }
-
     }
 }

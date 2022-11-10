@@ -15,13 +15,14 @@
 <div class="aui-register-popup">
     <div class="aui-register-box">
         <div class="aui-register-link">
-            <a href="index.html" class="fl">返回首页</a>
+            <a href="" class="fl">返回首页</a>
             <a href="signUp01.html" class="fr">已有账号？去登录</a>
         </div>
         <div class="aui-register-logo"></div>
         <div class="aui-register-form" id="verifyCheck">
-            <iframe width=0 height=0 frameborder=0 id="myiframe03" name="myiframe03" ></iframe>
-            <form id="MyFrom3" action="/user/registerUserWithPhone" onSubmit="return false" method="post" target="myiframe03">
+            <iframe width=0 height=0 frameborder=0 id="myiframe03" name="myiframe03"></iframe>
+            <form id="MyFrom3" action="/user/registerUserWithPhone" onSubmit="return false" method="post"
+                  target="myiframe03">
                 <div class="aui-register-form-item">
                     <input type="text" name="Uphone" placeholder="手机号码" class="txt01 f-r3 required" keycodes="tel"
                            tabindex="1" data-valid="isNonEmpty||isPhone"
@@ -32,13 +33,7 @@
                     </label>
                     <span class="aui-get-code btn btn-gray f-r3 f-ml5 f-size13" id="time_box" disabled
                           style="display:none;"></span>
-                    <span class="aui-get-code btn btn-gray f-r3 f-ml5 f-size13" id="verifyYz">获取动态码</span>
-                </div>
-                <div class="aui-register-form-item">
-                    <input type="text" placeholder="动态码（未实装，请填六位数字）" maxlength="6" id="verifyNo"
-                           class="txt02 f-r3 f-fl required" tabindex="2" data-valid="isNonEmpty||isInt"
-                           data-error="<i class='icon-tips'></i>请填写正确的手机动态码||<i class='icon-tips'></i>请填写6位手机动态码">
-                    <label class="focus valid"></label>
+
                 </div>
                 <div class="aui-register-form-item">
                     <input type="text" name="Uname" maxlength="20" placeholder="账户名" class="txt03 f-r3 required"
@@ -52,14 +47,6 @@
                            class="txt04 f-r3 required" tabindex="4" style="ime-mode:disabled;" onpaste="return  false"
                            autocomplete="off" data-valid="isNonEmpty||between:6-20||level:2"
                            data-error="<i class='icon-tips'></i>密码太短，最少6位||<i class='icon-tips'></i>密码长度6-20位||<i class='icon-tips'></i>密码太简单，有被盗风险，建议字母+数字的组合">
-                    <label class="focus valid"></label>
-                </div>
-                <div class="aui-register-form-item">
-                    <input type="password" name="Urepassword" placeholder="确认密码" maxlength="20"
-                           class="txt05 f-r3 required" tabindex="5" style="ime-mode:disabled;" onpaste="return  false"
-                           autocomplete="off" data-valid="isNonEmpty||between:6-16||isRepeat:password"
-                           data-error="<i class='icon-tips'></i>密码太短，最少6位||<i class='icon-tips'></i>密码长度6-16位||<i class='icon-tips'></i>两次密码输入不一致"
-                           id="Urepassword">
                     <label class="focus valid"></label>
                 </div>
                 <div class="aui-register-form-item">
@@ -82,7 +69,7 @@
         let Uphone = formData.get('Uphone');
         $.ajax({
             method: 'POST',
-            url:'http://47.107.225.197:8081/user/registerUserWithPhone',
+            url: 'http://47.107.225.197:8081/user/registerUserWithPhone',
             // url: 'http://localhost:8081/user/registerUserWithPhone',
             data: {Uname: Uname, Upassword: Upassword, Uphone: Uphone}
         }).done(function (msg) {
@@ -98,7 +85,7 @@
     function aaasdd() {
         var phone = document.getElementById('Uphone').value.trim();
         var password = document.getElementById('Upassword').value.trim();
-        var rePassword = document.getElementById('UrePassword').value.trim();
+        var rePassword = document.getElementById('Urepassword').value.trim();
         var adminNo = document.getElementById('Uname').value.trim();
         var verifyNo = document.getElementById('verifyNo').value.trim();
         if (phone.length == 0 || password.length == 0 || rePassword.length == 0 || adminNo.length == 0 || verifyNo.length == 0) {

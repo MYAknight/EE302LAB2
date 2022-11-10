@@ -1,6 +1,5 @@
 package com.example.ee302lab2.controller;
 
-import com.baomidou.mybatisplus.extension.api.R;
 import com.example.ee302lab2.entity.Result;
 import com.example.ee302lab2.entity.TUser;
 import com.example.ee302lab2.entity.room;
